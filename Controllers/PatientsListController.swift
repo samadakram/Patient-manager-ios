@@ -9,11 +9,11 @@ import UIKit
 
 class PatientsListController: UIViewController, UITableViewDataSource {
     
-    private let patients: [(Name: String, Age: Int, Gender: String, Relation: String)] = [("Sarah Miller", 30, "Female", "Mother"), ("James Miller", 25, "Male", "Father"), ("Robert Bob", 20, "Male", "Self")]
+    private let patients: [(Name: String, Age: Int, Gender: String, Relation: String)] = [("Sarah Miller", 30, "Female", "Mother"), ("James Miller", 25, "Male", "Father"), ("Robert Bob", 20, "Male", "Self"), ("Gomilla", 100, "Male", "Daughter")]
     
     private let PatientsList: UITableView = {
        let tableView = UITableView()
-        tableView.rowHeight = 150
+        tableView.rowHeight = 135
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = UIColor(named: "AppBackground")
         tableView.separatorStyle = .none
@@ -47,8 +47,8 @@ class PatientsListController: UIViewController, UITableViewDataSource {
     func setupContraints() {
         NSLayoutConstraint.activate([
             PatientsList.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            PatientsList.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            PatientsList.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            PatientsList.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            PatientsList.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             PatientsList.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
         ])
     }
@@ -68,7 +68,12 @@ class PatientsListController: UIViewController, UITableViewDataSource {
         }
         
         let patient = patients[indexPath.row]
-        cell.configure(name: patient.Name)
+        cell.configure(
+            name: patient.Name,
+            relation: patient.Relation,
+            age: patient.Age,
+            gender: patient.Gender
+        )
         return cell
     }
 }
